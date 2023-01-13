@@ -1,0 +1,66 @@
+# Each value is in the format of "Power (J)"
+# Module hierarchy is in the format of ["ModuleName", "SubmoduleName", "Type"]
+
+# Each leaf node is a line of instruction to be decoded runtime:
+# ==============================   Cache Power   ===============================
+Cache:
+  L1ICache:
+    Read: "self.L1IRead()"  # Command string is sent to eval()
+    Write: "self.L1IWrite()"
+    Dynamic: "self.L1IRead() + self.L1IWrite()"
+    Static: "self.L1IStatic()"
+  L1DCache:
+    Read: "self.L1DRead()"
+    Write: "self.L1DWrite()"
+    Dynamic: "self.L1DRead() + self.L1DWrite()"
+    Static: "self.L1DStatic()"
+  L2Cache:
+    Read: "self.L2Read()"
+    Write: "self.L2Write()"
+    Dynamic: "self.L2Read() + self.L2Write()"
+    Static: "self.L2Static()"
+  L3Cache:
+    Read: "self.L3Read()"
+    Write: "self.L3Write()"
+    Dynamic: "self.L3Read() + self.L3Write()"
+    Static: "self.L3Static()"
+# ============================   Processor Power   =============================
+Processor:
+  Processor:
+    Dynamic: "self.procDynamic()"
+    Static: "self.procStatic()"
+# ========================   Electrical Network Power   ========================
+ENetwork:
+  ELink:
+    Dynamic: "self.eLinkDynamic()"
+    Static: "self.eLinkStatic()"
+  ERouter:
+    Dynamic: "self.eRouterDynamic()"
+    Static: "self.eRouterStatic()"
+  Buffer:
+    Dynamic: "self.bufferDynamic()"
+    Static: "self.bufferStatic()"
+# ==========================   Optical Network Power   =========================
+# ONetwork:
+#   OLink:
+#     Dynamic:
+#     Static:
+#   ORouter:
+#     Dynamic:
+#     Static:
+#   Laser:
+#     Dynamic:
+#     Static:
+# =================================   Memory   =================================
+# This is a very crude classification since the internal structure is complex
+# Memory:
+#   DRAM:
+#     Dynamic:
+#     Static:
+#   Memory Controller:
+#     Dynamic:
+#     Static:
+  
+
+
+# Should in sequence generate ["Cache", "L1ICache", "Read"], ["Cache", "L1ICache", "Write"], ["Cache", "L1ICache", "Static"]...

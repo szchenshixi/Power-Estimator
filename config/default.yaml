@@ -1,0 +1,6 @@
+Core:
+  statsFilePath: inputs/2021-08-30_summary.csv
+  eParaFilePath: parameters/Xeon_Phi_4GHz.yaml
+  instructionsFilePath: config/instructions.yaml
+
+  outFilePath: outputs/power.csv

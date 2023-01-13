@@ -1,0 +1,88 @@
+# description     : Parameters of the off-line power model
+# author          : Shixi CHEN
+# ==============================================================================
+# Identifier and long comments of this set of model parameters
+__description__: "Xeon Phi, 4GHz, 7nm"
+# ------------------------------------------------------------------------------
+#                                 Processor
+# ------------------------------------------------------------------------------
+processor:
+  __description__:
+    "Power consumption of one core including its L1I/D cache as given by McPAT
+    7nm"
+  dynamic power (W): 1.50185 # (W)
+  static power (W): 0.0238705 # (W)
+
+# ------------------------------------------------------------------------------
+#                                   Cache
+# ------------------------------------------------------------------------------
+L1I Cache:
+  __description__: "L1 cache energy is already included in the processor model"
+  read power (nJ/op): .nan # (nJ/op)
+  write power (nJ/op): .nan # (nJ/op)
+  static power (W): .nan # (W)
+
+L1D Cache:
+  __description__: "L1 cache energy is already included in the processor model"
+  read power (nJ/op): .nan # (nJ/op)
+  write power (nJ/op): .nan # (nJ/op)
+  static power (W): .nan # (W)
+
+L2 Cache:
+  __description__: "Power consumption of one 512KB L2 slice"
+  read power (nJ/op): 0.0226595 # (nJ/op)
+  write power (nJ/op): 0.0226595 # (nJ/op)
+  static power (W): 0.0238705 # (W)
+
+L3 Cache:
+  __description__: "Power consumption of one 4MB L3 slice"
+  read power (nJ/op): 0.080728 # (nJ/op)
+  write power (nJ/op): 0.080728 # (nJ/op)
+  static power (W): 0.189787 # (W)
+
+# ------------------------------------------------------------------------------
+#                                  Networks
+# ------------------------------------------------------------------------------
+router:
+  __description__:
+    "Power consumption of one router. This is just a rough model so any user who
+    has a large router power consumption should polish it."
+  dynamic power (pJ/(bit*router)): 0.09
+  static power (W): 0.011
+
+buffer:
+  __description__:
+    "Power consumption of the buffers in one router. This is just a rough model
+    so any user who has a large buffer power consumption should polish it."
+  dynamic power (pJ/(bit*buffer)): 0.064
+  static power (W): 0.0002
+
+on-chip Elink:
+  __description__:
+    "Power consumption of an electrical link, including a transmitter, a
+    receiver, and repeaters between them."
+  dynamic power (pJ/(bit*link)): 0.0768 # @4GHz
+  static power (W): 0.017 # @4GHz
+
+Olink transciver:
+  __description__:
+    "TODO: Power consumption of one transciver, including a transmitter and a
+    receiver."
+  dynamic power (pJ/(bit*link)): 0
+  static power (W): 0
+
+# ------------------------------------------------------------------------------
+#                                  Memory
+# ------------------------------------------------------------------------------
+memory controller:
+  __description__:
+    "Power consumption of the buffers in one router. This is just a rough model
+    so any user who has a large buffer power consumption should polish it."
+  dynamic power (pJ/bit): 0.0391783
+  static power (W): 0.00194085
+
+memory:
+  __description__: "Power consumption of an 8GB Micron DDR4 chip with 9% of its time
+  reading and 3% of its time writing"
+  dynamic power (W): 0.24
+  static power (W): 0.075
